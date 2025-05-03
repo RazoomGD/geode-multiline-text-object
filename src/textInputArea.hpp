@@ -68,7 +68,7 @@ public:
     void insertTextAtCursor(std::string insertStr, bool onlyIfFocused) {
         if (onlyIfFocused && !m_selected) return;
 
-        auto text = getString();
+        auto text = std::string(getString());
         const int cursorPos = m_textField->m_uCursorPos; // -1 means at the very end
         const int pos = (cursorPos < 0 || cursorPos > text.size()) ? text.size() : cursorPos;
 
