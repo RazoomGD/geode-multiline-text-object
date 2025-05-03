@@ -122,10 +122,10 @@ class $modify(MyCustomizeObjectLayer, CustomizeObjectLayer) {
 
 	void onBreakApart(CCObject* sender) {
 		if (m_textInput) {
-			const char* old = m_textInput->m_textField->getString();
+			auto old = std::string(m_textInput->getString());
 			std::string result;
-			for (const char* ch = old; ch; ch++) {
-				if (*ch != '\n') result += *ch;
+			for (char ch : old) {
+				if (ch != '\n') result += ch;
 			}
 			m_textInput->setString(result);
 		}
