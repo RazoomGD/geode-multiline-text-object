@@ -41,7 +41,7 @@ public:
             }
         }
 
-        m_allowedChars.insert(0, "\n");
+        m_allowedChars = std::string(m_allowedChars) + "\n";
         m_filterSwearWords = false;
 
         return true;
@@ -65,12 +65,26 @@ public:
         return CCTextInputNode::ccTouchBegan(touch, event);
     }
 
-    void insertTextAtCursor(std::string insertStr, bool onlyIfFocused) {
+    void insertTextAtCursor(const char* insertStr, bool onlyIfFocused) {
         if (onlyIfFocused && !m_selected) return;
-        std::string str = m_textField->getString();
-        int cp = m_textField->m_uCursorPos;
-        int pos = (cp < 0 || cp > str.size()) ? str.size() : cp;
-        str.insert(pos, insertStr);
-        setString(str);
+
+        const char* oldStr = m_textField->getString();
+        const int oldStrLen = std::strlen(oldStr);
+        const int insertStrLen = std::strlen(insertStr);
+
+        const int cursorPos = m_textField->m_uCursorPos; // -1 means at the very end
+        const int pos = (cursorPos < 0 || cursorPos > oldStrLen) ? oldStrLen : cursorPos; // 0 <= pos <= oldStrLen
+
+        std::string newStr;
+        int oldStrIter = 0;
+        for (; oldStrIter < pos; oldStrIter++) newStr += oldStr[oldStrIter];
+        for (int j = 0; j < insertStrLen; j++) newStr += insertStr[j];
+        for (; oldStrIter < oldStrLen; oldStrIter++) newStr += oldStr[oldStrIter];
+
+        if (cursorPos >= 0) {
+            m_textField->m_uCursorPos += insertStrLen;
+        }
+
+        setString(newStr);
     }
 };

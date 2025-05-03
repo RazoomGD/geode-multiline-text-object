@@ -118,6 +118,19 @@ class $modify(MyCustomizeObjectLayer, CustomizeObjectLayer) {
 			inp->insertTextAtCursor("\n", true);
 		}
 	}
+
+
+	void onBreakApart(CCObject* sender) {
+		if (m_textInput) {
+			const char* old = m_textInput->m_textField->getString();
+			std::string result;
+			for (const char* ch = old; ch; ch++) {
+				if (*ch != '\n') result += *ch;
+			}
+			m_textInput->setString(result);
+		}
+		CustomizeObjectLayer::onBreakApart(sender);
+	}
 };
 
 
