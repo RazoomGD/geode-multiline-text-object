@@ -1,0 +1,46 @@
+{
+	"geode": "4.3.1",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "razoom.multiline",
+	"name": "Multiline Text Object",
+	"version": "v1.0.0",
+	"developer": "RaZooM",
+	"description": "Allows you to use multiple lines in standard text objects",
+
+	"tags": ["editor", "enhancement", "utility"],
+
+	"links": {
+		"source": "https://github.com/RazoomGD/geode-object-groups",
+		"community": "https://discord.gg/wcWvtKHP8n"
+	},
+
+	"dependencies": {
+		"geode.node-ids": {
+			"importance": "required",
+			"version": ">=1.17.0"
+		},
+		"geode.custom-keybinds": {
+			"importance": "required",
+			"version": ">=v1.10.0",
+			"platforms": ["win", "macos", "mac-intel", "mac-arm"]
+		}
+	},
+
+	"resources": {
+        "sprites": [
+			"resources/*.png"
+		]
+    },
+
+	"incompatibilities": {
+		"spaghettdev.betterinputs": {
+			"importance": "breaking",
+			"version": ">=v4.0.0-alpha"
+		}
+	}
+}
