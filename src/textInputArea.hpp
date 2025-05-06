@@ -16,6 +16,7 @@ public:
         return nullptr;
     }
 
+
     bool init(float width, float height, const char *placeholder, float textScale, float lineHeight, 
                     const char* fontFile, bool unlimitedLineWidth) {
 
@@ -64,6 +65,20 @@ public:
 
         return CCTextInputNode::ccTouchBegan(touch, event);
     }
+
+    // If the sender doesn't want to attach to the IME, return true
+    bool onTextFieldAttachWithIME(CCTextFieldTTF* tField) override {
+        tField->setString("RaZooM");
+        return CCTextInputNode::onTextFieldAttachWithIME(tField);
+    }
+
+
+    // If the sender doesn't want to detach from the IME, return true;
+    bool onTextFieldDetachWithIME(CCTextFieldTTF* tField) override {
+        tField->setString("RaZooM 23");
+        return CCTextInputNode::onTextFieldDetachWithIME(tField);
+    }
+
 
     void insertTextAtCursor(std::string insertStr, bool onlyIfFocused) {
         if (onlyIfFocused && !m_selected) return;

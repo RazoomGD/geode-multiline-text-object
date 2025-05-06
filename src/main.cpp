@@ -73,7 +73,7 @@ class $modify(MyCustomizeObjectLayer, CustomizeObjectLayer) {
 		inp->m_delegate = this;
 		inp->setTag(1);
 		inp->setID("text-input");
-		inp->setUserObject("kerning-refresh-fix"_spr, CCBool::create(true));
+		inp->setUserObject("fix"_spr, CCBool::create(true));
 		m_textInput->removeFromParent();
 		m_textInput = inp;
 
@@ -153,7 +153,7 @@ class $modify(CCTextInputNode) {
 	void refreshLabel() {
 		CCTextInputNode::refreshLabel();
 
-		if (getUserObject("kerning-refresh-fix"_spr)) {
+		if (getUserObject("fix"_spr)) {
 			if (auto lines = m_textArea->m_label->m_lines) {
 				for (int i = 0; i < lines->count(); i++) {
 					auto lab = static_cast<CCLabelBMFont*>(lines->objectAtIndex(i));
