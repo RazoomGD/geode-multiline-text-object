@@ -4,6 +4,7 @@ using namespace geode::prelude;
 
 #include <Geode/modify/CustomizeObjectLayer.hpp>
 #include <Geode/modify/CCTextInputNode.hpp>
+#include <Geode/modify/CCIMEDispatcher.hpp>
 #include <Geode/modify/EditorUI.hpp>
 
 #include "textInputArea.hpp"
@@ -162,5 +163,15 @@ class $modify(CCTextInputNode) {
 				}
 			}
 		}
+	}
+};
+
+
+class $modify(CCIMEDispatcher) {
+	void addDelegate(CCIMEDelegate* pDelegate) {
+		if (auto editBox = typeinfo_cast<CCEditBox*>(pDelegate)) {
+			editBox->setInputMode(EditBoxInputMode::kEditBoxInputModeAny); // allow multiline
+		}
+		CCIMEDispatcher::addDelegate(pDelegate);
 	}
 };

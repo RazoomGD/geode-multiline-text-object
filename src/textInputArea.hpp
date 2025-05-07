@@ -66,18 +66,22 @@ public:
         return CCTextInputNode::ccTouchBegan(touch, event);
     }
 
-    // If the sender doesn't want to attach to the IME, return true
-    bool onTextFieldAttachWithIME(CCTextFieldTTF* tField) override {
-        tField->setString("RaZooM");
-        return CCTextInputNode::onTextFieldAttachWithIME(tField);
-    }
+    // // If the sender doesn't want to attach to the IME, return true
+    // bool onTextFieldAttachWithIME(CCTextFieldTTF* tField) override {
+    //     tField->setString("RaZooM");
+    //     auto ret = CCTextInputNode::onTextFieldAttachWithIME(tField);
+    //     log::debug("onTextFieldAttachWithIME {}", ret);
+    //     return ret;
+    // }
 
 
-    // If the sender doesn't want to detach from the IME, return true;
-    bool onTextFieldDetachWithIME(CCTextFieldTTF* tField) override {
-        tField->setString("RaZooM 23");
-        return CCTextInputNode::onTextFieldDetachWithIME(tField);
-    }
+    // // If the sender doesn't want to detach from the IME, return true;
+    // bool onTextFieldDetachWithIME(CCTextFieldTTF* tField) override {
+    //     tField->setString("RaZooM 23");
+    //     auto ret = CCTextInputNode::onTextFieldDetachWithIME(tField);
+    //     log::debug("onTextFieldDetachWithIME {}", ret);
+    //     return ret;
+    // }
 
 
     void insertTextAtCursor(std::string insertStr, bool onlyIfFocused) {
